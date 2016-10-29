@@ -72,20 +72,18 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'access_code' => $access_code
-        ]);
+        ]); // creates the new user
          try
          {
             Mail::to($user->email)->send(new UserVerificationMailer($user));
-            return $user;
-          }
+            return redirect('/login')->with('status', 'Please verify your registered account on your e-mail.'); // redirects to log in page when registration is successful.
+          } // sends e-mail verification.
           catch(\Swift_TransportException $e)
           {
             
                 $user->delete(); // if failed to send email verification. it deletes the registered user and prompts to try registration again.
                 return redirect()->back()
-                                        ->withErrors([
-                                                'username' => 'Registration failed. Please try to register again.'
-                                            ])
+                                        ->with('status', 'Registration failed. Please try to register again.')
                                         ->withInput($data);
           }
     }

@@ -57,8 +57,6 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-        return redirect('login')->withErrors([
-                'username' => 'Almost done. Now please check your e-mail and verify your account.'
-        ]); // when successfully registered
+        // return $user;
     }
 }

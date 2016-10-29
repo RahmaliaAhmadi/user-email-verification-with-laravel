@@ -7,6 +7,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+                    @if (session('status'))
+                        <div class="col-md-12">
+                            <span class="text-warning"><center>
+                                <strong>{{ session('status') }}</strong>
+                            </center></span>
+                        </div> <br><br>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
@@ -55,7 +62,7 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
+                                    Forgot Your Password? 
                                 </a>
                             </div>
                         </div>

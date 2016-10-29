@@ -29,3 +29,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## E-Mail Verification Notes
 
 Tweaked some of the frameworks classes such as AuthenticateUsers, RegisterUsers and some controllers.
+Just run the php artisan key:generate again. And configure your .env configurations. Have fun.

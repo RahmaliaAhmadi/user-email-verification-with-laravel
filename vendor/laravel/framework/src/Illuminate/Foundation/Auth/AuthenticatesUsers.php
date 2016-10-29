@@ -102,16 +102,15 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        if (!$user->verified) {// if the user acount is not verified
+         // return $user;
+        if (!$user->verified) {
             $this->guard()->logout();
 
              $request->session()->flush();
 
             $request->session()->regenerate();
 
-            return redirect('/login')->withErrors([
-                    'username' => 'Please verify your account first.'// again, its your way of prompting the status session here.
-                ]);
+            return redirect('/login')->with('status', 'Please check and verify your account first on your registered e-mail.');
         }
     }
 
@@ -154,7 +153,7 @@ trait AuthenticatesUsers
 
         $request->session()->regenerate();
 
-        return redirect('/login');
+        return redirect('/login')->with('status', 'Your account has been successfully logged out.');
     }
 
     /**
